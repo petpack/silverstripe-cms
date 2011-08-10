@@ -996,9 +996,15 @@ class ModelAdmin_RecordController extends Controller {
 	public function doDelete($data, $form, $request) {
 		if($this->currentRecord->canDelete(Member::currentUser())) {
 			$this->currentRecord->delete();
-			Director::redirect($this->parentController->Link('SearchForm?action=search'));
+			if(!Director::is_ajax()) {
+				Director::redirect($this->parentController->Link('SearchForm?action=search'));
+			}
 		}
-		else Director::redirectBack();
+		else if(Director::is_ajax()) {
+			return $this->edit($request);
+		} else {
+			Director::redirectBack();
+		}
 		return;
 	}
 	
