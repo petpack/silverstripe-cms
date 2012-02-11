@@ -313,6 +313,7 @@ body.stillLoading select {
 		border-left: 1px solid #AAA;
 	}
 	#bottom #switchView span {
+		float: left;
 		border-left: none;
 	}
 #bottom .bottomTabs a {
