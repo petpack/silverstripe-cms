@@ -79,6 +79,7 @@ abstract class CMSBatchAction extends Object {
 	function applicablePagesHelper($ids, $methodName, $checkStagePages = true, $checkLivePages = true) {
 		if(!is_array($ids)) user_error("Bad \$ids passed to applicablePagesHelper()", E_USER_WARNING);
 		if(!is_string($methodName)) user_error("Bad \$methodName passed to applicablePagesHelper()", E_USER_WARNING);
+		if(empty($ids)) return array();
 		
 		$applicableIDs = array();
 		
