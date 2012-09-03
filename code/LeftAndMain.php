@@ -1290,7 +1290,59 @@ JS;
 	static function require_themed_css($name, $media = null) {
 		self::$extra_requirements['themedcss'][] = array($name, $media);
 	}
-	
+
+	/**
+	 * Messages to be shown in the CMS main content area
+	 * Currently only shown before the edit form is loaded
+	 * Called in ModelAdmin_right.ss
+	 *
+	 * @author Adam Rice <development@HashNotAdam.com>
+	 */
+	public function Messages() {
+		$rv = '';
+
+		if( $session = Session::get('Form_EditForm.message') ) {
+			foreach( array('error', 'message', 'notice', 'validation') as $type ) {
+				switch( $type ) {
+					case 'message':
+						$class = '';
+						break;
+					case 'error':
+						$class = 'bad';
+						break;
+					default:
+						$class = $type;
+				}
+
+				foreach( $session[$type] as $message )
+					$rv .= "<p class=\"message $type\">$message</p>";
+			}
+			Session::clear('Form_EditForm.message');
+		}
+
+		return $rv;
+	}
+
+	/**
+	 * @see Messages()
+	 * @param String $message
+	 * @param String $type error, message, notice, or validation
+	 *
+	 * @author Adam Rice <development@HashNotAdam.com>
+	 */
+	static public function setMessage( $message, $type ) {
+		if( !$session = Session::get('Form_EditForm.message') ) {
+			$session = array(
+				'message' => array(),
+				'notice' => array(),
+				'error' => array(),
+				'validation' => array()
+			);
+		}
+		$session[$type][] = $message;
+
+		Session::set('Form_EditForm.message', $session);
+	}
 }
 
 ?>
