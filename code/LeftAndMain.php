@@ -1302,7 +1302,7 @@ JS;
 		$rv = '';
 
 		if( $session = Session::get('Form_EditForm.message') ) {
-			foreach( array('error', 'message', 'notice', 'validation') as $type ) {
+			foreach( array('message', 'error', 'notice', 'validation') as $type ) {
 				switch( $type ) {
 					case 'message':
 						$class = '';
@@ -1315,7 +1315,7 @@ JS;
 				}
 
 				foreach( $session[$type] as $message )
-					$rv .= "<p class=\"message $type\">$message</p>";
+					$rv .= "<p class=\"message $class\">$message</p>";
 			}
 			Session::clear('Form_EditForm.message');
 		}
@@ -1326,7 +1326,7 @@ JS;
 	/**
 	 * @see Messages()
 	 * @param String $message
-	 * @param String $type error, message, notice, or validation
+	 * @param String $type message, error, notice, or validation
 	 *
 	 * @author Adam Rice <development@HashNotAdam.com>
 	 */
