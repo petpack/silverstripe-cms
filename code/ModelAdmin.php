@@ -492,8 +492,6 @@ class ModelAdmin_CollectionController extends Controller {
 		
 		$fields->push(new LiteralField("SpecFor{$modelName}", $specHTML));
 		$fields->push(new CheckboxField('EmptyBeforeImport', 'Clear Database before import', false)); 
-
-		$this->updateImportForm($modelName, $fields);
 		
 		$actions = new FieldSet(
 			new FormAction('import', _t('ModelAdmin.IMPORT', 'Import from CSV'))
@@ -511,21 +509,6 @@ class ModelAdmin_CollectionController extends Controller {
 		);
 		$form->setHTMLID("Form_ImportForm_" . $this->modelClass);
 		return $form;
-	}
-
-	/**
-	 * Allow the active model's admin to add to modify ImportForm
-	 * Since ImportForm is called directly from ModelAdmin, need to call down statically
-	 * Requires the admin sub-class to be named {$modelName}Admin
-	 * @param  string   $modelName
-	 * @param  FieldSet $fields
-	 */
-	public function updateImportForm( $modelName, &$fields ) {
-		$className = "{$modelName}Admin";
-		if( class_exists($className) ) {
-			if( method_exists($className, 'updateImportForm') )
-				$className::updateImportForm($modelName, $fields);
-		}
 	}
 	
 	/**
@@ -562,9 +545,6 @@ class ModelAdmin_CollectionController extends Controller {
 		if (!empty($data['EmptyBeforeImport']) && $data['EmptyBeforeImport']) { //clear database before import
 			$loader->deleteExistingRecords = true;
 		}
-
-		$this->updateLoader($loader, $data);
-
 		$results = $loader->load($_FILES['_CsvFile']['tmp_name']);
 
 		$message = '';
@@ -584,16 +564,6 @@ class ModelAdmin_CollectionController extends Controller {
 
 		$form->sessionMessage($message, 'good');
 		Director::redirectBack();
-	}
-
-	/**
-	 * Allow sub-classes of CsvBulkLoader to adjust settings before import
-	 * @param  CsvBulkLoader $loader
-	 * @param  arrray        $data
-	 */
-	protected function updateLoader( $loader, $data ) {
-		if( method_exists($loader, 'updateImport') )
-			$loader->updateImport($data);
 	}
 	
 	
