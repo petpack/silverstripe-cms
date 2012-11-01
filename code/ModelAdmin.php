@@ -739,9 +739,10 @@ class ModelAdmin_CollectionController extends Controller {
 		$exportFields = $this->getResultColumns($searchCriteria, false);
 		$tf->setFieldListCsv($exportFields);
 
-		$url = '<a href=\"' . $this->Link() . '/$ID/edit\">$value</a>';
-		$tf->setFieldFormatting(array_combine(array_keys($summaryFields), array_fill(0,count($summaryFields), $url)));
-	
+		if( $summaryFields ) {
+			$url = '<a href=\"' . $this->Link() . '/$ID/edit\">$value</a>';
+			$tf->setFieldFormatting(array_combine(array_keys($summaryFields), array_fill(0,count($summaryFields), $url)));
+		}
 		return $tf;
 	}
 	
