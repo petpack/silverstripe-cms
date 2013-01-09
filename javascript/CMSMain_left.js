@@ -131,7 +131,12 @@ addpageclass.prototype = {
 
 			var suffix = _NEW_PAGES[parentID]++;
 			Ajax.SubmitForm(_HANDLER_FORMS.addpage, "action_addpage", {
-				onSuccess : Ajax.Evaluator,
+				// Resolves #282. The response to submitting the AddPageForm is 
+				// automatically eval()ed by Prototype if the content-type header 
+				// is 'text/javascript', so the following line restults in the 
+				// response being evaluated twice, and causes the node to be inserted 
+				// into the tree twice
+				// onSuccess : Ajax.Evaluator,
 				onFailure : function(response) { if (response.status == 403) {
 					alert('You cannot add that page at that location.');
 				}},
