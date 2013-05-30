@@ -31,6 +31,10 @@ class PageComment extends DataObject {
 		"RSSTitle" => "Varchar",
 	);
 
+	public static $indexes = array(
+		'ParentID_IsSpam_NeedsModeration' => '(ParentID,IsSpam,NeedsModeration)'
+	);
+
 	// Number of comments to show before paginating
 	static $comments_per_page = 10;
 	
