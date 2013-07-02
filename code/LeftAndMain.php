@@ -199,7 +199,11 @@ class LeftAndMain extends Controller {
 		} else {
 			// By default, we include fake-objects for all firebug calls
 			// to avoid javascript errors when referencing console.log() etc in javascript code
-			Requirements::javascript(THIRDPARTY_DIR . '/firebug-lite/firebugx.js');
+
+			//XXX: DM: ...not anymore, we're going to go for the new and revolutionary approach 
+			//		of not writing bad code which assumes there's a console.
+			//Requirements::javascript(THIRDPARTY_DIR . '/firebug-lite/firebugx.js');
+
 		}
 		
 		Requirements::javascript(SAPPHIRE_DIR . '/thirdparty/prototype/prototype.js');
@@ -265,7 +269,6 @@ class LeftAndMain extends Controller {
 				THIRDPARTY_DIR . '/jquery-effen/jquery.fn.js',
 				SAPPHIRE_DIR . '/javascript/core/jquery.ondemand.js',
 				SAPPHIRE_DIR . '/javascript/jquery_improvements.js',
-				THIRDPARTY_DIR . '/firebug-lite/firebugx.js',
 				SAPPHIRE_DIR . '/javascript/i18n.js',
 			)
 		);
