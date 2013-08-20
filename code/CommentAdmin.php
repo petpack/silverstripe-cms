@@ -58,6 +58,11 @@ class CommentAdmin extends LeftAndMain {
 	}
 
 	public function EditForm() {
+		//Allow this function to be overridden by extensions:
+		if ($ret = $this->extend("ExtendedEditForm"))
+			//note that it can only be extended once:
+			return array_pop($ret);
+		
 		$section = $this->Section();
 
 		if($section == 'approved') {
@@ -285,6 +290,8 @@ JS;
 	 * Return the number of moderated comments
 	 */
 	function NumModerated() {
+		if ($ret = $this->extend("ExtendedNumModerated"))
+			return array_pop($ret);
 		return DB::query("SELECT COUNT(*) FROM \"PageComment\" WHERE \"IsSpam\"=0 AND \"NeedsModeration\"=0")->value();
 	}
 
@@ -292,6 +299,8 @@ JS;
 	 * Return the number of unmoderated comments
 	 */
 	function NumUnmoderated() {
+		if ($ret = $this->extend("ExtendedNumUnmoderated"))
+			return array_pop($ret);
 		return DB::query("SELECT COUNT(*) FROM \"PageComment\" WHERE \"IsSpam\"=0 AND \"NeedsModeration\"=1")->value();
 	}
 
@@ -299,6 +308,8 @@ JS;
 	 * Return the number of comments marked as spam
 	 */
 	function NumSpam() {
+		if ($ret = $this->extend("ExtendedNumSpam"))
+			return array_pop($ret);
 		return DB::query("SELECT COUNT(*) FROM \"PageComment\" WHERE \"IsSpam\"=1")->value();
 	}
 	
