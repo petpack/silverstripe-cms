@@ -38,7 +38,7 @@ class LeftAndMain extends Controller {
 	* The url used for the link in the Help tab in the backend
 	* Value can be overwritten if required in _config.php
 	*/
-	static $help_link = 'http://userhelp.silverstripe.org';
+	static $help_link = 'http://2.4.userhelp.silverstripe.org';
 
 	static $allowed_actions = array(
 		'index',
