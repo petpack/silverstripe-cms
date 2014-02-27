@@ -57,12 +57,16 @@ DraggableSeparator.prototype = {
 }
 
 function fixRightWidth() {
-	if(!$('right')) return;
+	var right = $('right')
+	if(!right || !right.style) return;
 
 	// Absolutely position all the elements
 	var sep = getDimension($('left'),'width') + getDimension($('left'),'left');
-	$('separator').style.left = (sep + 2) + 'px';
-	$('right').style.left = (sep + 6) + 'px';
+	var separator = $('separator')
+	if (separator && separator.style)
+		separator.style.left = (sep + 2) + 'px';
+	
+	right.style.left = (sep + 6) + 'px';
 
 	// Give the remaining space to right
 	var bodyWidth = parseInt(document.body.offsetWidth);
@@ -71,9 +75,10 @@ function fixRightWidth() {
 	var rightWidth = bodyWidth - leftWidth - sepWidth -18;
 	
 	// Extra pane in right for insert image/flash/link things
-	if($('contentPanel') && $('contentPanel').style.display != "none") {
+	var contentpanel = $('contentPanel') 
+	if(contentpanel && contentpanel.style && contentpanel.style.display != "none") {
 		rightWidth -= 210;
-		$('contentPanel').style.left = leftWidth + sepWidth + rightWidth + sepWidth + 23 + 'px';
+		contentpanel.style.left = leftWidth + sepWidth + rightWidth + sepWidth + 23 + 'px';
 	}
 
 	if(rightWidth >= 0) $('right').style.width = rightWidth + 'px';
@@ -145,9 +150,15 @@ window.ontabschanged = function() {
 	if( !formEl )
 		return;
 
-	var fs = formEl.getElementsByTagName('fieldset')[0];
-	if(fs && fs.parentNode == formEl) fs.style.height = formEl.style.height;
+	try {
+	
+		var fs = formEl.getElementsByTagName('fieldset')[0];
+		if(fs && fs.parentNode == formEl) fs.style.height = formEl.style.height;
 
+	} catch (ex) {
+		//mert
+	}
+	
 	// var divs = document.getElementsBySelector('#Form_EditForm div');
 	/*for(i=0;i<divs.length;i++) {
 		if( ( Element.hasClassName(divs[i],'tab') || Element.hasClassName(divs[i],'tabset') ) && isVisible(divs[i]) ) {
@@ -190,24 +201,34 @@ window.onresize = function(init) {
 		} else {
 			var paddingBottomOffset = 20;
 		}
-		var rightH = parseInt(right.style.height) + paddingBottomOffset;
-		$('left').style.height = $('separator').style.height = rightH + 'px';
+ 		
+ 		var rightH = 0;
+ 		if (right && right.style)
+ 			rightH = parseInt(right.style.height) + paddingBottomOffset;
+		
+ 		var left = $('left')
+ 		
+ 		if (left && left.style)
+ 			left.style.height = $('separator').style.height = rightH + 'px';
 	}
 
 	if(typeof fitToParent == 'function') {
 		if($('Form_EditForm')) fitToParent('Form_EditForm', 4);
 		if($('Form_AddForm')) fitToParent('Form_AddForm', 4);
 		
-		if($('Form_EditorToolbarImageForm') && $('Form_EditorToolbarImageForm').style.display == "block") {
+		var imageform = $('Form_EditorToolbarImageForm')
+		if(imageform && imageform.style && imageform.style.display == "block") {
 			fitToParent('Form_EditorToolbarImageForm', 5);
-			fitToParent($('Form_EditorToolbarImageForm').getElementsByTagName('fieldset')[0]);
+			fitToParent(imageform.getElementsByTagName('fieldset')[0]);
 			if(navigator.appName == "Microsoft Internet Explorer") {
 				fitToParent('Image');
 			} else {
 				fitToParent('Image', 250);
 			}
 		}
-		if($('Form_EditorToolbarFlashForm') && $('Form_EditorToolbarFlashForm').style.display == "block") {
+		
+		var flashform = $('Form_EditorToolbarFlashForm')
+		if(flashform && flashform.style && flashform.style.display == "block") {
 			fitToParent('Form_EditorToolbarFlashForm', 5);
 			fitToParent($('Form_EditorToolbarFlashForm').getElementsByTagName('fieldset')[0]);
 			if(navigator.appName == "Microsoft Internet Explorer") {
