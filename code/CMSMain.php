@@ -10,13 +10,14 @@
  */
 class CMSMain extends LeftAndMain implements CurrentPageIdentifier, PermissionProvider {
 	
-	static $url_segment = '';
+	static $url_segment = 'cms';
 	
 	static $url_rule = '/$Action/$ID/$OtherID';
 	
 	// Maintain a lower priority than other administration sections
 	// so that Director does not think they are actions of CMSMain
-	static $url_priority = 40;
+	//static $url_priority = 40;
+	static $url_priority = 99;
 	
 	static $menu_title = 'Pages';
 	
@@ -140,6 +141,10 @@ class CMSMain extends LeftAndMain implements CurrentPageIdentifier, PermissionPr
 	 * @return string
 	 */
 	public function Link($action = null) {
+		//DM: override default CMSMain behaviour: we don't allow empty urlsegments here anymore, since
+		//	we've moved CMSMain to /admin/cms
+		return parent::Link($action);
+		//old code:
 		return Controller::join_links(
 			$this->stat('url_base', true),
 			$this->stat('url_segment', true), // in case we want to change the segment
@@ -147,7 +152,7 @@ class CMSMain extends LeftAndMain implements CurrentPageIdentifier, PermissionPr
 			"$action"
 		);
 	}
-
+	
 	/**
 	 * Return the entire site tree as a nested set of ULs
 	 */
