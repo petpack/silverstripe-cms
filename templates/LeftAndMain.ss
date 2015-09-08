@@ -27,6 +27,9 @@
 		$Right
 	</div>
 
+	<% if HideContentPanel %>
+	
+	<% else %>
 	<div id="contentPanel" style="display:none;">
 		<% control EditorToolbar %>
 			$ImageForm
@@ -34,6 +37,7 @@
 			$FlashForm
 		<% end_control %>
 	</div>
+	<% end_if %>
 	
 	<div id="bottom">
 		<div class="holder">

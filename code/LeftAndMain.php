@@ -69,6 +69,18 @@ class LeftAndMain extends Controller {
 		'themedcss' => array(),
 	);
 	
+	
+	/**
+	 * If this returns true, Silverstripe's div#contentPanel will not be included in output.
+	 * This panel holds the Image form and Link form for the CMS HTML Editor.
+	 * If you're not using that, make this return true to save a few DB queries 
+	 * @return boolean
+	 */
+	public function HideContentPanel() {
+		return false;
+		//return !HtmlEditorField::inUse();
+	}
+	
 	/**
 	 * @param Member $member
 	 * @return boolean
