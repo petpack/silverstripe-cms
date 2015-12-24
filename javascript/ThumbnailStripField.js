@@ -14,6 +14,7 @@ ThumbnailStripField.prototype = {
 	updateMethod: 'getimages',
 	
 	initialize: function() {
+		
 		try {
 			this.updateMethod = this.className.match(/updatemethod=([^ ]+)/)[1];
 		} catch(err) {}	
@@ -28,9 +29,16 @@ ThumbnailStripField.prototype = {
 			var searchField = $$('#' + this.updateMethod + 'Search input')[0];		
 			var timeout = undefined;
 			
+			var lastval = jQuery(searchField).val();
+			
 			if(searchField) {
 				Event.observe(searchField, 'keypress', function(event) {
+					if (jQuery(this).val() == lastval) //only fire on change
+						return false
+						
 					if(timeout != undefined) clearTimeout(timeout);
+					
+					lastval = jQuery(this).val();
 					
 					timeout = setTimeout(function() {
 						var searchText = searchField.value;
@@ -39,7 +47,7 @@ ThumbnailStripField.prototype = {
 							folderID = parentField.inputTag.value
 						$('Flash').ajaxGetFiles(folderID, searchText);
 						$('FolderImages').ajaxGetFiles(folderID, searchText);
-					}, 500);
+					}, 2000);
 				});
 			}
 		}
@@ -49,6 +57,7 @@ ThumbnailStripField.prototype = {
 		if(!callback) callback = this.reapplyBehaviour.bind(this);
 		var securityID = ($('SecurityID') ? '&SecurityID=' + $('SecurityID').value : '');
 		this.innerHTML = '<h2>Loading...</h2>';
+		
 		var ajaxURL = this.helperURLBase() + '&methodName=' + this.updateMethod + '&folderID=' + folderID + '&searchText=' + searchText + securityID + '&cacheKillerDate=' + parseInt((new Date()).getTime()) + '&cacheKillerRand=' + parseInt(10000 * Math.random());
 
 		new Ajax.Updater(this, ajaxURL, {

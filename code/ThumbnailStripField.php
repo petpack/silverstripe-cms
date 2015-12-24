@@ -71,6 +71,13 @@ class ThumbnailStripField extends FormField {
 
 		$folder = DataObject::get_by_id('Folder', (int) $_GET['folderID']);
 		
+		//disallow empty searches which return a gazillion results.
+		if (!$searchText) {
+			return "<h2>Enter a Search term</h2>";
+		}
+		//allow the special string '(all)' to show everything:
+		if (strtolower($searchText) == '(all)') $searchText = '';
+		
 		if($folder) {
 			$folderList = $folder->getDescendantIDList();
 			array_unshift($folderList, $folder->ID);
@@ -118,8 +125,9 @@ class ThumbnailStripField extends FormField {
 					
 					$result .= 
 						'<li>' .
-							'<a href="' . $image->Filename . '?r=' . rand(1,100000) . '" title="' . $image->Title .   '">' .
-								'<img class="destwidth=' . round($width) . ',destheight=' . round($height) . '" src="'. $thumbnail->URL . '?r=' . rand(1,100000) . '" alt="' . $image->Title . '" />' .
+							'<a href="' . $image->Filename . '" title="' . $image->Title .   '">' .
+								'<img class="destwidth=' . round($width) . ',destheight=' . round($height) . '" src="'. 
+									$thumbnail->URL . '" alt="' . $image->Title . '" />' .
 							'</a>' .
 						'</li>';
 				}
