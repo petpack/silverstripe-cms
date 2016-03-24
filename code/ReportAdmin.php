@@ -95,17 +95,16 @@ class ReportAdmin extends LeftAndMain {
 		if(isset($params['ID'])) Session::set('currentReport', $params['ID']);
 		if(isset($params['OtherID'])) Session::set('currentOtherID', $params['OtherID']);
 		
-		if(Director::is_ajax()) {
-			SSViewer::setOption('rewriteHashlinks', false);
-			
-			$result = $this->customise(array(
-				'EditForm' => $editForm
-			))->renderWith($this->getTemplatesWithSuffix('_right'));
-						
-			return $this->getLastFormIn($result);
-		}
+		SSViewer::setOption('rewriteHashlinks', false);
 		
-		return array();
+		$result = $this->customise(array(
+			'EditForm' => $editForm
+		))->renderWith($this->getTemplatesWithSuffix('_right'));
+					
+		if(Director::is_ajax())
+			return $this->getLastFormIn($result);
+		else return $this;
+		
 	}
 	
 	/**
