@@ -307,6 +307,36 @@ function ajaxActionsAtTop(formName, actionHolderName, tabName) {
 	}
 }
 
+//Creates a div#popover element, appends it to the body, and returns it.
+//note that this may override an existing popover and the element may or may
+//not be visible - call e.g show() or fadeIn() on the return to show it.
+function createPopup(content,use_existing) {
+	var existing = jQuery('div#popover');
+	if (existing[0])
+		if (use_existing) return existing.html(content);
+		else
+			existing.remove();
+	//else 
+		jQuery('<div id="popover" style="position: absolute;top: 0px;left: 0px;height: 100%;width: 100%;background: rgba(0, 0, 0, 0.7);text-align: center;display: none;z-index:999;">' + content + '</div>').appendTo('body');
+	ele = jQuery('div#popover')
+	nh = Math.max(jQuery('body').height(),jQuery(window).height()); 
+	ele.height(nh)
+	return ele
+}
+
+/**
+ * removes the pop-over created by ajaxPopup
+ */
+function hidePopup(instantly) {
+	if (instantly)
+		jQuery('div#popover').remove()
+	else
+		jQuery('div#popover').fadeOut('slow',function() {
+			jQuery('div#popover').remove();
+		})
+}
+
+
 /**
  * Prepare the ajax actions so that the buttons actually do something
  */
@@ -322,9 +352,18 @@ function prepareAjaxActions(actions, formName, tabName) {
 				window[this.name + '_' + tabName](e);
 			} else {
 				statusMessage('...');
+				var l = 'data:image/gif;base64,R0lGODlhKwALAPEAAP%2F%2F%2FwAAAIKCggAAACH%2FC05FVFNDQVBFMi4wAwEAAAAh%2FhpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh%2BQQJCgAAACwAAAAAKwALAAACMoSOCMuW2diD88UKG95W88uF4DaGWFmhZid93pq%2BpwxnLUnXh8ou%2BsSz%2BT64oCAyTBUAACH5BAkKAAAALAAAAAArAAsAAAI9xI4IyyAPYWOxmoTHrHzzmGHe94xkmJifyqFKQ0pwLLgHa82xrekkDrIBZRQab1jyfY7KTtPimixiUsevAAAh%2BQQJCgAAACwAAAAAKwALAAACPYSOCMswD2FjqZpqW9xv4g8KE7d54XmMpNSgqLoOpgvC60xjNonnyc7p%2BVKamKw1zDCMR8rp8pksYlKorgAAIfkECQoAAAAsAAAAACsACwAAAkCEjgjLltnYmJS6Bxt%2Bsfq5ZUyoNJ9HHlEqdCfFrqn7DrE2m7Wdj%2F2y45FkQ13t5itKdshFExC8YCLOEBX6AhQAADsAAAAAAAAAAAA%3D';
+				createPopup("<div style='margin-top: 100px;margin-left:40%;padding: 20px;background: rgba(0,0,0,0.5);border-radius:20px;width:20%;'><h1 style='color: #fff;'>Loading...<img src='" + l + "' /></h1></div>").show();
+				
 				Ajax.SubmitForm(this.ownerForm, this.name, {
-					onSuccess: Ajax.Evaluator,
-					onFailure: ajaxErrorHandler
+					onSuccess: function(response) {
+						Ajax.Evaluator(response);
+						hidePopup();
+					},
+					onFailure: function(response) {
+						ajaxErrorHandler(response);
+						hidePopup();
+					}
 				});
 			}
 			return false;

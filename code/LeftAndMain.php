@@ -133,7 +133,7 @@ class LeftAndMain extends Controller {
 		if(Object::has_extension('SiteTree', 'Translatable') && !Director::is_ajax()) {
 			Translatable::choose_site_locale(array_keys(Translatable::get_existing_content_languages('SiteTree')));
 		}
-
+		
 		// Allow customisation of the access check by a decorator
 		// Also all the canView() check to execute Director::redirect()
 		if(!$this->canView() && !$this->response->isFinished()) {
