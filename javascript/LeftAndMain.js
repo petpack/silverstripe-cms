@@ -324,6 +324,11 @@ function createPopup(content,use_existing) {
 	return ele
 }
 
+function showLoadingPopup() {
+	var l = 'data:image/gif;base64,R0lGODlhKwALAPEAAP%2F%2F%2FwAAAIKCggAAACH%2FC05FVFNDQVBFMi4wAwEAAAAh%2FhpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh%2BQQJCgAAACwAAAAAKwALAAACMoSOCMuW2diD88UKG95W88uF4DaGWFmhZid93pq%2BpwxnLUnXh8ou%2BsSz%2BT64oCAyTBUAACH5BAkKAAAALAAAAAArAAsAAAI9xI4IyyAPYWOxmoTHrHzzmGHe94xkmJifyqFKQ0pwLLgHa82xrekkDrIBZRQab1jyfY7KTtPimixiUsevAAAh%2BQQJCgAAACwAAAAAKwALAAACPYSOCMswD2FjqZpqW9xv4g8KE7d54XmMpNSgqLoOpgvC60xjNonnyc7p%2BVKamKw1zDCMR8rp8pksYlKorgAAIfkECQoAAAAsAAAAACsACwAAAkCEjgjLltnYmJS6Bxt%2Bsfq5ZUyoNJ9HHlEqdCfFrqn7DrE2m7Wdj%2F2y45FkQ13t5itKdshFExC8YCLOEBX6AhQAADsAAAAAAAAAAAA%3D';
+	createPopup("<div style='margin-top: 100px;margin-left:40%;padding: 20px;background: rgba(0,0,0,0.5);border-radius:20px;width:20%;'><h1 style='color: #fff;'>Loading...<img src='" + l + "' /></h1></div>").show();
+}
+
 /**
  * removes the pop-over created by ajaxPopup
  */
@@ -352,8 +357,7 @@ function prepareAjaxActions(actions, formName, tabName) {
 				window[this.name + '_' + tabName](e);
 			} else {
 				statusMessage('...');
-				var l = 'data:image/gif;base64,R0lGODlhKwALAPEAAP%2F%2F%2FwAAAIKCggAAACH%2FC05FVFNDQVBFMi4wAwEAAAAh%2FhpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh%2BQQJCgAAACwAAAAAKwALAAACMoSOCMuW2diD88UKG95W88uF4DaGWFmhZid93pq%2BpwxnLUnXh8ou%2BsSz%2BT64oCAyTBUAACH5BAkKAAAALAAAAAArAAsAAAI9xI4IyyAPYWOxmoTHrHzzmGHe94xkmJifyqFKQ0pwLLgHa82xrekkDrIBZRQab1jyfY7KTtPimixiUsevAAAh%2BQQJCgAAACwAAAAAKwALAAACPYSOCMswD2FjqZpqW9xv4g8KE7d54XmMpNSgqLoOpgvC60xjNonnyc7p%2BVKamKw1zDCMR8rp8pksYlKorgAAIfkECQoAAAAsAAAAACsACwAAAkCEjgjLltnYmJS6Bxt%2Bsfq5ZUyoNJ9HHlEqdCfFrqn7DrE2m7Wdj%2F2y45FkQ13t5itKdshFExC8YCLOEBX6AhQAADsAAAAAAAAAAAA%3D';
-				createPopup("<div style='margin-top: 100px;margin-left:40%;padding: 20px;background: rgba(0,0,0,0.5);border-radius:20px;width:20%;'><h1 style='color: #fff;'>Loading...<img src='" + l + "' /></h1></div>").show();
+				showLoadingPopup();
 				
 				Ajax.SubmitForm(this.ownerForm, this.name, {
 					onSuccess: function(response) {

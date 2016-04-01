@@ -29,6 +29,7 @@ Behaviour.register({
 				if(treeNode) treeNode.addNodeClass('loading');
 				
 				statusMessage(ss.i18n._t('LOADING', 'loading...')); 
+				showLoadingPopup();
 
 				var requestURL = 'admin/reports/show/' + id;
 				new Ajax.Request(requestURL, {
@@ -37,6 +38,7 @@ Behaviour.register({
 					postBody : 'ajax=1',
 					onSuccess : this.successfullyReceivedPage.bind(this),
 					onFailure : function(response) { 
+						hidePopup();
 						errorMessage('error loading page',response);
 					}
 				});
@@ -47,7 +49,7 @@ Behaviour.register({
 		
 		successfullyReceivedPage : function(response) {
 			this.loadNewPage(response.responseText);
-			
+			hidePopup();
 			// Treenode might not exist if that part of the tree is closed
 			var treeNode = $('sitetree').getTreeNodeByIdx(this.receivingID);
 			if(treeNode) {
