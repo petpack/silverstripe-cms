@@ -567,3 +567,43 @@ div.filterBox {
 			background: url(../../cms/images/network-save.gif) no-repeat left center;
 			padding-left: 20px;
 		}
+
+/**
+ * Matching page name, menu title and meta suggestion form
+ */
+.field-options {
+	display: none; /* initially hidden to allow animations */
+	position: relative;
+	bottom: -4px;
+	height: auto;
+	width: 96%;
+	margin: 5px 0 0 5px;
+	background-color: rgb(247, 246, 188);
+	border: solid 2px rgba(208, 204, 204, 0.27);
+	border-radius: 3px;
+	margin-bottom: 20px;
+}
+
+.field-options form.field-options-form label.left {
+	display: inline;
+}
+
+.field-options form.field-options-form label {
+	position: relative;
+	bottom: 2px;
+	padding-left: 3px;
+	padding-right: 15px;
+}
+
+.field-options form.field-options-form button {
+	padding: 4px;
+	margin-left: 5px;
+	position: relative;
+	bottom: 2px;
+}
+
+/* make checkboxes much easier to click */
+.field-options input[type="checkbox"] {
+	width: 15px;
+	height: 15px;
+}
