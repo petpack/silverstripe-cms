@@ -332,7 +332,11 @@ class SS_Report extends ViewableData {
 			foreach($sortedListItems as $report) {
 				if(strpos($report,'(') === false) $reportObj = new $report;
 				else $reportObj = eval("return new $report;");
-
+				
+				//call init() on the object if it exists:
+				if (method_exists($reportObj, 'init'))
+					$reportObj->init();
+				
 				$output[$reportObj->ID()] = $reportObj;
 			} 
 		}
