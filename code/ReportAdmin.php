@@ -164,6 +164,12 @@ class ReportAdmin extends LeftAndMain {
 		if($obj) $fields = $obj->getCMSFields();
 		if($obj) $actions = $obj->getCMSActions();
 		
+		//allow reports to specify a custom template
+		//	(just define ReportClass->template)
+		$template = "ReportAdminForm";
+		if ($obj->template)
+			$template = $obj->template;
+		
 		$idField = new HiddenField('ID');
 		$idField->setValue($id);
 		$fields->push($idField);
@@ -180,8 +186,13 @@ class ReportAdmin extends LeftAndMain {
 
 		$formLink = $this->Link() . '/EditForm';
 		if($filteredCriteria) $formLink .= '?' . http_build_query($filteredCriteria);
+		
+		//the report can be accessed from the template with $Report
+		//	allowing e.g $Report.functioncall
+		$form->Report = $obj;
+		
 		$form->setFormAction($formLink);
-		$form->setTemplate('ReportAdminForm');
+		$form->setTemplate($template);
 		
 		return $form;
 	}
