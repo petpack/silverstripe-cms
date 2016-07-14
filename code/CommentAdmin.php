@@ -24,7 +24,7 @@ class CommentAdmin extends LeftAndMain {
 	);
 	
 	/**
-	 * @var int The number of comments per page for the {@link CommentTable} in this admin.
+	 * @var SS_Int The number of comments per page for the {@link CommentTable} in this admin.
 	 */
 	static $comments_per_page = '20';
 
@@ -314,14 +314,14 @@ JS;
 	}
 	
 	/**
-	 * @param $num int
+	 * @param $num SS_Int
 	 */	
 	function set_comments_per_page($num){
 		self::$comments_per_page = $num;
 	}
 	
 	/**
-	 * @return int
+	 * @return SS_Int
 	 */
 	function get_comments_per_page(){
 		return self::$comments_per_page;

@@ -130,7 +130,7 @@ class PageCommentInterface extends RequestHandler {
 	}
 	
 	/**
-	 * @return boolean true if the currently logged in user can post a comment,
+	 * @return SS_Boolean true if the currently logged in user can post a comment,
 	 * false if they can't. Users can post comments by default, enforce 
 	 * security by using 
 	 * @link PageCommentInterface::set_comments_require_login() and 

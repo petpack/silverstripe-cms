@@ -107,7 +107,7 @@ class CMSMain extends LeftAndMain implements CurrentPageIdentifier, PermissionPr
 	 * If this is set to true, the "switchView" context in the
 	 * template is shown, with links to the staging and publish site.
 	 *
-	 * @return boolean
+	 * @return SS_Boolean
 	 */
 	function ShowSwitchView() {
 		return true;
@@ -393,7 +393,7 @@ JS;
 	/**
 	 * Get a database record to be managed by the CMS
 	 */
- 	public function getRecord($id) {
+ 	public function getRecord($id, $className = null) {
 		$treeClass = $this->stat('tree_class');
 
 		if($id && is_numeric($id)) {
@@ -1452,7 +1452,7 @@ JS;
 	/**
 	 * Determine if there are more than one languages in our site tree.
 	 * 
-	 * @return boolean
+	 * @return SS_Boolean
 	 */
 	function MultipleLanguages() {
 		$langs = Translatable::get_existing_content_languages('SiteTree');
@@ -1461,7 +1461,7 @@ JS;
 	}
 	
 	/**
-	 * @return boolean
+	 * @return SS_Boolean
 	 */
 	function IsTranslatableEnabled() {
 		return Object::has_extension('SiteTree', 'Translatable');

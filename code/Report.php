@@ -167,7 +167,7 @@ class SS_Report extends ViewableData {
 	 *
 	 * @return FieldSet
 	 */
-	function getCMSFields() {
+	function getCMSFields($params = null) {
 		$fields = new FieldSet(
 			new LiteralField(
 				'ReportTitle', 
@@ -240,7 +240,8 @@ class SS_Report extends ViewableData {
 		$tlf->setPermissions(array('export', 'print'));
 		
 		// Hack to figure out if we are printing
-		if (isset($_REQUEST['url']) && array_pop(explode('/', $_REQUEST['url'])) == 'printall') {
+		$array = explode('/', $_REQUEST['url']);
+		if (isset($_REQUEST['url']) && array_pop($array) == 'printall') {
 			$tlf->setTemplate('SSReportTableField');
 		}
 		
@@ -253,7 +254,7 @@ class SS_Report extends ViewableData {
 	
 	/**
 	 * @param Member $member
-	 * @return boolean
+	 * @return SS_Boolean
 	 */
 	function canView($member = null) {
 		if(!$member && $member !== FALSE) {
@@ -382,7 +383,7 @@ class SS_Report_FakeQuery extends SQLQuery {
 		$this->limit = $limit;
 	}
 	
-	function unlimitedRowCount() {
+	function unlimitedRowCount($column = null) {
 		$source = $this->obj->{$this->method}($this->params, null, null);
 		return $source ? $source->Count() : 0;
 	}
@@ -511,7 +512,7 @@ abstract class SS_ReportWrapper extends SS_Report {
 		return $this->baseReport->title();
 	}
 
-	function canView() {
+	function canView($member = null) {
 		return $this->baseReport->canView();
 	}
 	

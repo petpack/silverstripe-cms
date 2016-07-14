@@ -318,9 +318,9 @@ class SocketWriteRead
 	
 	/**
 	 *	@param	string	$host			The host to send/receive data.
-	 *	@param	int		$port			The port on the remote host.
+	 *	@param	SS_Int		$port			The port on the remote host.
 	 *	@param	string	$request		The data to send.
-	 *	@param	int		$responseLength	The amount of data to read.  Defaults to 1160 bytes.
+	 *	@param	SS_Int		$responseLength	The amount of data to read.  Defaults to 1160 bytes.
 	 */
 	public function __construct($host, $port, $request, $responseLength = 1160)
 		{
@@ -377,7 +377,7 @@ class SocketWriteRead
 	 *
 	 *	If there was no error, 0 will be returned.
 	 *
-	 *	@return int
+	 *	@return SS_Int
 	 */
 	public function getErrorNumner()
 		{

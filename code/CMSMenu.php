@@ -105,7 +105,7 @@ class CMSMenu extends Object implements IteratorAggregate, i18nEntityProvider
 	 * @param string $menuTitle The link's title in the CMS menu
 	 * @param string $url The url of the link
 	 * @param integer $priority The menu priority (sorting order) of the menu item.  Higher priorities will be further left.
-	 * @return boolean The result of the operation.
+	 * @return SS_Boolean The result of the operation.
 	 */
 	public static function add_link($code, $menuTitle, $url, $priority = -1) {
 		return self::add_menu_item($code, $menuTitle, $url, null, $priority);
@@ -123,7 +123,7 @@ class CMSMenu extends Object implements IteratorAggregate, i18nEntityProvider
 	 * @param string $controllerClass The controller class for this menu, used to check permisssions.  
 	 * 					If blank, it's assumed that this is public, and always shown to users who 
 	 * 					have the rights to access some other part of the admin area.
-	 * @return boolean Success
+	 * @return SS_Boolean Success
 	 */
 	public static function add_menu_item($code, $menuTitle, $url, $controllerClass = null, $priority = -1) {
 		// If a class is defined, then force the use of that as a code.  This helps prevent menu item duplication
@@ -242,7 +242,7 @@ class CMSMenu extends Object implements IteratorAggregate, i18nEntityProvider
 	 * @param string $controllerClass The controller class for this menu, used to check permisssions.  
 	 * 					If blank, it's assumed that this is public, and always shown to users who 
 	 * 					have the rights to access some other part of the admin area.
-	 * @return boolean Success
+	 * @return SS_Boolean Success
 	 */
 	public static function replace_menu_item($code, $menuTitle, $url, $controllerClass = null, $priority = -1) {
 		self::$menu_item_changes[] = array(
@@ -269,7 +269,7 @@ class CMSMenu extends Object implements IteratorAggregate, i18nEntityProvider
 	 *
 	 * @todo A variation of this function could probably be moved to {@link ClassInfo}
 	 * @param string $root The root class to begin finding subclasses
-	 * @param boolean $recursive Look for subclasses recursively?
+	 * @param SS_Boolean $recursive Look for subclasses recursively?
 	 * @return array Valid, unique subclasses
 	 */
 	public static function get_cms_classes($root = 'LeftAndMain', $recursive = true) {

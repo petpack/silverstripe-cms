@@ -16,13 +16,13 @@ class ThumbnailStripField extends FormField {
 	 *
 	 * The new behaviour is to only search the root folder if a folderID is ommitted.
 	 *
-	 * @var boolean
+	 * @var SS_Boolean
 	 */
 	protected static $use_legacy_image_search = false;
 
 	/**
 	 * setter for ThumbnailStripField::use_legacy_image_search
-	 * @param boolean $enable
+	 * @param SS_Boolean $enable
 	 */
 	public static function set_use_legacy_image_search($enable) {
 	    self::$use_legacy_image_search = $enable;
@@ -30,7 +30,7 @@ class ThumbnailStripField extends FormField {
 	
 	/**
 	 * getter for ThumbnailStripField::use_legacy_image_search
-	 * @return boolean
+	 * @return SS_Boolean
 	 */
 	public static function get_use_legacy_image_search() {
 	    return self::$use_legacy_image_search;

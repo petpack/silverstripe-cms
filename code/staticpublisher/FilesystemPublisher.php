@@ -33,7 +33,7 @@ class FilesystemPublisher extends StaticPublisher {
 	protected static $static_base_url = null;
 	
 	/**
-	 * @var Boolean Use domain based cacheing (put cache files into a domain subfolder)
+	 * @var SS_Boolean Use domain based cacheing (put cache files into a domain subfolder)
 	 * This must be true if you are using this with the "subsites" module.
 	 * Please note that this form of caching requires all URLs to be provided absolute
 	 * (not relative to the webroot) via {@link SiteTree->AbsoluteLink()}.

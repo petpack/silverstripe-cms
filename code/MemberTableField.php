@@ -37,7 +37,7 @@ class MemberTableField extends ComplexTableField {
 	
 	/**
 	 * Set the page size for this table. 
-	 * @var int 
+	 * @var SS_Int 
 	 */ 
 	public static $page_size = 20; 
 	
@@ -57,7 +57,7 @@ class MemberTableField extends ComplexTableField {
 	 * @param string $name Name of the field (e.g. "Members")
 	 * @param mixed $group Can be the ID of a Group instance, or a Group instance itself
 	 * @param DataObjectSet $members Optional set of Members to set as the source items for this field
-	 * @param boolean $hidePassword Hide the password field or not in the summary?
+	 * @param SS_Boolean $hidePassword Hide the password field or not in the summary?
 	 */
 	function __construct($controller, $name, $group = null, $members = null, $hidePassword = true) {
 		$sourceClass = self::$data_class;

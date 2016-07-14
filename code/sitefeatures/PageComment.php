@@ -138,7 +138,7 @@ class PageComment extends DataObject {
 	
 	/**
 	 *
-	 * @param boolean $includerelations a boolean value to indicate if the labels returned include relation fields
+	 * @param SS_Boolean $includerelations a boolean value to indicate if the labels returned include relation fields
 	 * 
 	 */
 	function fieldLabels($includerelations = true) {
@@ -176,7 +176,7 @@ class PageComment extends DataObject {
 	 * @todo Integrate with PageCommentInterface::$comments_require_permission and $comments_require_login
 	 * 
 	 * @param Member $member
-	 * @return Boolean
+	 * @return SS_Boolean
 	 */
 	function canCreate($member = null) {
 		return true;
@@ -189,7 +189,7 @@ class PageComment extends DataObject {
 	 * in {@link PageCommentInterface}.
 	 * 
 	 * @param Member $member
-	 * @return Boolean
+	 * @return SS_Boolean
 	 */
 	function canView($member = null) {
 		if(!$member) $member = Member::currentUser();
@@ -210,7 +210,7 @@ class PageComment extends DataObject {
 	 * and {@link canView()}. 
 	 * 
 	 * @param Member $member
-	 * @return Boolean
+	 * @return SS_Boolean
 	 */
 	function canEdit($member = null) {
 		if(!$member) $member = Member::currentUser();
@@ -229,7 +229,7 @@ class PageComment extends DataObject {
 	 * and {@link canEdit()}.
 	 * 
 	 * @param Member $member
-	 * @return Boolean
+	 * @return SS_Boolean
 	 */
 	function canDelete($member = null) {
 		if(!$member) $member = Member::currentUser();

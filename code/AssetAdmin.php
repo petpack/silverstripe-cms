@@ -18,7 +18,7 @@ class AssetAdmin extends LeftAndMain {
 	
 	/**
 	 * @see Upload->allowedMaxFileSize
-	 * @var int
+	 * @var SS_Int
 	 */
 	public static $allowed_max_file_size;
 	
@@ -41,7 +41,7 @@ class AssetAdmin extends LeftAndMain {
 	);
 	
 	/**
-	 * @var boolean Enables upload of additional textual information
+	 * @var SS_Boolean Enables upload of additional textual information
 	 * alongside each file (through multifile.js), which makes
 	 * batch changes easier.
 	 * 
@@ -533,7 +533,7 @@ JS;
 	/**
 	 * Returns a subtree of items underneat the given folder.
 	 */
-	public function getsubtree() {
+	public function getsubtree($request) {
 		$obj = DataObject::get_by_id('Folder', $_REQUEST['ID']);
 		$obj->setMarkingFilter('ClassName', ClassInfo::subclassesFor('Folder'));
 		$obj->markPartialTree();

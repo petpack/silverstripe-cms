@@ -117,7 +117,7 @@ abstract class ModelAdmin extends LeftAndMain {
 	/**
 	 * Amount of results showing on a single page.
 	 *
-	 * @var int
+	 * @var SS_Int
 	 */
 	public static $page_length = 30;
 	
@@ -689,7 +689,7 @@ class ModelAdmin_CollectionController extends Controller {
 	 * Defaults to all fields specified in {@link DataObject->summaryFields()}.
 	 * 
 	 * @param array $searchCriteria Limit fields by populating the 'ResultsAssembly' key
-	 * @param boolean $selectedOnly Limit by 'ResultsAssempty
+	 * @param SS_Boolean $selectedOnly Limit by 'ResultsAssempty
 	 */
 	function getResultColumns($searchCriteria, $selectedOnly = true) {
 		$model = singleton($this->modelClass);

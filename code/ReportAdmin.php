@@ -44,7 +44,7 @@ class ReportAdmin extends LeftAndMain {
 	 * include any Reports, so there's no point in showing
 	 * 
 	 * @param Member $member
-	 * @return boolean
+	 * @return SS_Boolean
 	 */
 	function canView($member = null) {
 		if(!$member && $member !== FALSE) $member = Member::currentUser();
@@ -78,7 +78,13 @@ class ReportAdmin extends LeftAndMain {
 	 *
 	 * @param SS_HTTPRequest $request The HTTP request object
 	 */
-	public function show($request) {
+	public function show() {
+		$args = func_get_args();
+		$request = $args[0];
+
+		if (!($request))
+			user_error('ReportAdmin::show() must be passed a $request object');
+
 		$params = $request->allParams();
 		
 		return $this->showWithEditForm($params, $this->reportEditFormFor($params['ID']));	
@@ -195,7 +201,7 @@ class ReportAdmin extends LeftAndMain {
 	 * is done by checking for a subclass of
 	 * "SS_Report" that exists.
 	 *
-	 * @return boolean
+	 * @return SS_Boolean
 	 */
 	public static function has_reports() {
 		return sizeof(SS_Report::get_reports('ReportAdmin')) > 0;

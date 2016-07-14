@@ -74,7 +74,7 @@ class LeftAndMain extends Controller {
 	 * If this returns true, Silverstripe's div#contentPanel will not be included in output.
 	 * This panel holds the Image form and Link form for the CMS HTML Editor.
 	 * If you're not using that, make this return true to save a few DB queries 
-	 * @return boolean
+	 * @return SS_Boolean
 	 */
 	public function HideContentPanel() {
 		return false;
@@ -83,7 +83,7 @@ class LeftAndMain extends Controller {
 	
 	/**
 	 * @param Member $member
-	 * @return boolean
+	 * @return SS_Boolean
 	 */
 	function canView($member = null) {
 		if(!$member && $member !== FALSE) {
@@ -336,7 +336,7 @@ class LeftAndMain extends Controller {
 	 * If this is set to true, the "switchView" context in the
 	 * template is shown, with links to the staging and publish site.
 	 *
-	 * @return boolean
+	 * @return SS_Boolean
 	 */
 	function ShowSwitchView() {
 		return false;
@@ -413,7 +413,7 @@ class LeftAndMain extends Controller {
 		else return "";
 	}
 	public function getLastFormIn($html) {
-		$parts = split('</?form[^>]*>', $html);
+		$parts = preg_split('/<\/?form[^>]*>/', $html);
 		return $parts[sizeof($parts)-2];
 	}
 
@@ -595,8 +595,8 @@ class LeftAndMain extends Controller {
 		);
 
 		// Trim off the outer tag
-		$tree = ereg_replace('^[ \t\r\n]*<ul[^>]*>','', $tree);
-		$tree = ereg_replace('</ul[^>]*>[ \t\r\n]*$','', $tree);
+		$tree = preg_replace('/^[ \t\r\n]*<ul[^>]*>/','', $tree);
+		$tree = preg_replace('/<\/ul[^>]*>[ \t\r\n]*$/','', $tree);
 		
 		return $tree;
 	}
