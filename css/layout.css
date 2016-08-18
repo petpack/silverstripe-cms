@@ -124,17 +124,13 @@ body.stillLoading select {
 	display: none;
 }
 
+
 /** 3-PANEL LAYOUT **/
 #top {
 	font-size: 14px;
 	height: 33px;
 	
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7f808b+0,74757f+3,6a6a77+23,5b5c69+45,535460+48,474855+77,474855+100 */
-	background: #7f808b;
-	background: -moz-linear-gradient(top,  #7f808b 0%, #74757f 3%, #6a6a77 23%, #5b5c69 45%, #535460 48%, #474855 77%, #474855 100%); 
-	background: -webkit-linear-gradient(top,  #7f808b 0%,#74757f 3%,#6a6a77 23%,#5b5c69 45%,#535460 48%,#474855 77%,#474855 100%); 
-	background: linear-gradient(to bottom,  #7f808b 0%,#74757f 3%,#6a6a77 23%,#5b5c69 45%,#535460 48%,#474855 77%,#474855 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7f808b', endColorstr='#474855',GradientType=0 ); 
+	background: #1a96d9;
 
 	color: #fff;
 	overflow: hidden;
@@ -216,13 +212,34 @@ body.stillLoading select {
 
 /** TOP PANEL **/
 #top #MainMenu {
-	margin: 0 0 0 6px;
+	margin: 0; /* 0 0 6px; */
 }
 #top #MainMenu li {
-	margin: 0 4px;
+	margin: 0; /* 4px; */
 	float: left;
 	height: 33px;
 	cursor: pointer;
+}
+
+#top #MainMenu li a {
+	padding: 0px 6px;
+}
+
+#top #MainMenu > li {
+	border-right: 1px solid #1576AB;
+}
+
+
+@keyframes glow {
+	from {
+		background: #1FB0FF;
+	}
+	50% {
+		background: #73CEFF;
+	}
+	to {
+		background: #1FB0FF;
+	}
 }
 
 #top #MainMenu a {
@@ -237,17 +254,18 @@ body.stillLoading select {
 	line-height: 32px;
 	color: #fff;
 	text-decoration: none;
+	text-shadow: 0px 0px 5px #777;
+	transition: background 0.5s ease 0s;;
 }
 	#top #MainMenu a:hover {
 		text-decoration: none;
 		
-		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#9a9fab+0,9297a3+3,7f8693+42,7d8491+45,777f8a+48,6e7782+71,6a7580+100 */
-		background: #9a9fab; /* Old browsers */
-		background: -moz-linear-gradient(top,  #9a9fab 0%, #9297a3 3%, #7f8693 42%, #7d8491 45%, #777f8a 48%, #6e7782 71%, #6a7580 100%); /* FF3.6-15 */
-		background: -webkit-linear-gradient(top,  #9a9fab 0%,#9297a3 3%,#7f8693 42%,#7d8491 45%,#777f8a 48%,#6e7782 71%,#6a7580 100%); /* Chrome10-25,Safari5.1-6 */
-		background: linear-gradient(to bottom,  #9a9fab 0%,#9297a3 3%,#7f8693 42%,#7d8491 45%,#777f8a 48%,#6e7782 71%,#6a7580 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9a9fab', endColorstr='#6a7580',GradientType=0 ); /* IE6-9 */
-
+		animation-duration: 0.3s;
+		animation-name: glow;
+		animation-iteration-count: 1;
+		
+		background: #1FB0FF;
+		
 	}
 
 #top #MainMenu .current {
@@ -275,6 +293,7 @@ body.stillLoading select {
 #top #MainMenu .current a:link,
 #top #MainMenu .current a:visited {
 	color : #2f383f;
+	text-shadow: 0px 0px 3px #fff;
 }
 
 #top #Logo {
@@ -305,13 +324,8 @@ body.stillLoading select {
 	left: 0;
 	height: 23px;
 	
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#52525f+0,464752+5,555662+36,585966+50,525360+55,4c4d5a+100 */
-	background: #52525f; /* Old browsers */
-	background: -moz-linear-gradient(top,  #52525f 0%, #464752 5%, #555662 36%, #585966 50%, #525360 55%, #4c4d5a 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top,  #52525f 0%,#464752 5%,#555662 36%,#585966 50%,#525360 55%,#4c4d5a 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom,  #52525f 0%,#464752 5%,#555662 36%,#585966 50%,#525360 55%,#4c4d5a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#52525f', endColorstr='#4c4d5a',GradientType=0 ); /* IE6-9 */
-
+	background: #1a96d9;
+	
 }
 
 #bottom .holder {
@@ -333,10 +347,15 @@ body.stillLoading select {
 			color: #ccc;
 		}
 	#bottom #logInStatus #LogoutLink {
-		background: url(../images/logout.gif) no-repeat right top;
-		padding-right: 20px;
 		padding-bottom: 3px;
 	}
+	
+a#LogoutLink .fa-sign-out {
+	color: #f00;
+	font-size: 16px;
+	margin-left: 5px;
+}
+	
 #bottom #switchView {
 	float: left;
 }

@@ -1254,7 +1254,7 @@ JS;
 	}
 	
 	function LogoStyle() {
-		return "background: url(" . self::$application_logo . ") no-repeat; " . self::$application_logo_style;
+		return "";
 	}
 
 	/**
