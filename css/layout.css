@@ -202,7 +202,16 @@ body.stillLoading select {
 
 #left h2,
 #contentPanel h2 {
-	background-image:url(../images/textures/obar-18.gif);
+	
+	/* gradient to match original SS image: http://colorzilla.com/gradient-editor/#82838e+0,7d7e89+5,71717d+35,5f5f6b+40,50505c+75,474855+100 */
+	
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#bcbcc2+0,b9b9bf+5,b2b2ba+35,a7a7b1+40,9d9dab+75,9697a8+100 */
+	background: #bcbcc2; /* Old browsers */
+	background: -moz-linear-gradient(top,  #bcbcc2 0%, #b9b9bf 5%, #b2b2ba 35%, #a7a7b1 40%, #9d9dab 75%, #9697a8 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #bcbcc2 0%,#b9b9bf 5%,#b2b2ba 35%,#a7a7b1 40%,#9d9dab 75%,#9697a8 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #bcbcc2 0%,#b9b9bf 5%,#b2b2ba 35%,#a7a7b1 40%,#9d9dab 75%,#9697a8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bcbcc2', endColorstr='#9697a8',GradientType=0 ); /* IE6-9 */
+
 	height: 18px;
 	line-height: 18px;
 	color: #fff;
@@ -235,7 +244,7 @@ body.stillLoading select {
 		background: #1FB0FF;
 	}
 	50% {
-		background: #73CEFF;
+		background: #54C3FF;
 	}
 	to {
 		background: #1FB0FF;
@@ -276,7 +285,6 @@ body.stillLoading select {
 	background: -webkit-linear-gradient(top,  #e8eff9 0%,#ccdef3 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to bottom,  #e8eff9 0%,#ccdef3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8eff9', endColorstr='#ccdef3',GradientType=0 ); /* IE6-9 */
-
 	border-bottom : none;
 }
 
@@ -287,6 +295,7 @@ body.stillLoading select {
 	background: -webkit-linear-gradient(top,  #f6faff 0%,#d8e6f6 66%,#cddef3 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to bottom,  #f6faff 0%,#d8e6f6 66%,#cddef3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6faff', endColorstr='#cddef3',GradientType=0 ); /* IE6-9 */
+	animation-name: none;
 
 }
 
@@ -328,6 +337,7 @@ body.stillLoading select {
 	
 }
 
+
 #bottom .holder {
 	text-align: center;
 	padding: 5px 6px 0 3px;
@@ -338,40 +348,42 @@ body.stillLoading select {
 #bottom #logInStatus {
 	float: right;
 }
-	#bottom a {
-		color: #fff;
-		background: none;
-	}
-		#bottom a:hover {
-			text-decoration: none;
-			color: #ccc;
-		}
-	#bottom #logInStatus #LogoutLink {
-		padding-bottom: 3px;
-	}
+
+#bottom a {
+	color: #fff;
+	background: none;
+	display: inline-block;
+	transition: transform 0.3s ease;
+	text-decoration: none;
+}
+#bottom a:hover {
+	text-decoration: none;
+	font-weight: bold;
+	transform: scale(1.1);
+	text-decoration: underline;
+}
+#bottom #logInStatus #LogoutLink {
+	padding-bottom: 3px;
+}
 	
 a#LogoutLink .fa-sign-out {
 	color: #f00;
-	font-size: 16px;
 	margin-left: 5px;
 }
 	
 #bottom #switchView {
 	float: left;
 }
-	#bottom #switchView a, #bottom #switchView span {
-		background: none;
-		padding-left: 8px;
-		padding-right: 8px;
-		display: inline-block;
-		border-left: 1px solid #AAA;
-	}
-	#bottom #switchView span {
-		float: left;
-		border-left: none;
-	}
-#bottom .bottomTabs a {
-	color: #fff;
+#bottom #switchView a, #bottom #switchView span {
+	background: none;
+	padding-left: 8px;
+	padding-right: 8px;
+	display: inline-block;
+	border-left: 1px solid #AAA;
+}
+#bottom #switchView span {
+	float: left;
+	border-left: none;
 }
 
 #bottom .bottomTabs div.blank {
@@ -387,12 +399,9 @@ a#LogoutLink .fa-sign-out {
 	color: #fff;
 }
 #bottom .bottomTabs .current {
-	color: #ccc;
+	color: #007;
+	font-weight: bold;
 }
-	#bottom .bottomTabs a:hover {
-		color: #ccc;
-		text-decoration: none;
-	}
 
 
 /** LEFT PANEL **/

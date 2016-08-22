@@ -154,10 +154,20 @@ ul.tree span.a span.modified,
 	cursor: pointer;
 }
 
-#treepanes h2 img {
+#treepanes h2 img,
+#treepanes h2 a {
 	float:right;
 	margin-right: 2px;
+	color: #fff;
+	text-decoration: none;
 }
+#treepanes h2 a {
+	color: #fff;
+	text-decoration: none;
+	margin-top: 2px;
+}
+}
+
 
 #treepanes form .field {
 	margin: 0;

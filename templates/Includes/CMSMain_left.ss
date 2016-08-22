@@ -2,8 +2,8 @@
 
 	<div id="treepanes">
 		<h2 id="heading_sitetree" class="selected">
-			<img id="sitetree_toggle_closed" src="sapphire/images/toggle-closed.gif" alt="+" style="display:none;" title="<% _t('OPENBOX','click to open this box') %>" />
-			<img id="sitetree_toggle_open" src="sapphire/images/toggle-open.gif" alt="-" title="<% _t('CLOSEBOX','click to close box') %>" />
+			<a id="sitetree_toggle_closed" class="fa fa-lg fa-angle-double-down" style="display:none;" title="<% _t('OPENBOX','click to open this box') %>" ></a>
+			<a id="sitetree_toggle_open" class="fa fa-lg fa-angle-double-up" title="<% _t('CLOSEBOX','click to close box') %>"></a>
 			<% _t('SITECONTENT TITLE','Page Tree',PR_HIGH) %>
 		</h2>
 		<div id="sitetree_holder">
@@ -129,8 +129,8 @@
 		-->
 
 		<h2 id="heading_versions">
-			<img id="versions_toggle_closed" src="sapphire/images/toggle-closed.gif" alt="+" title="<% _t('OPENBOX') %>" />
-			<img id="versions_toggle_open" src="sapphire/images/toggle-open.gif" alt="-" style="display:none;" title="<% _t('CLOSEBOX') %>" /> 
+			<a id="versions_toggle_closed" class="fa fa-lg fa-angle-double-down" title="<% _t('OPENBOX') %>" ></a>
+			<a id="versions_toggle_open" class="fa fa-lg fa-angle-double-up" style="display:none;" title="<% _t('CLOSEBOX') %>" ></a>
 			<% _t('PAGEVERSIONH','Page Version History') %>
 		</h2>
 		<div class="listpane" id="versions_holder" style="display:none">
@@ -150,8 +150,8 @@
 		</div>
 
 		<h2 id="heading_reports">
-			<img id="reports_toggle_closed" src="sapphire/images/toggle-closed.gif" alt="+" title="<% _t('OPENBOX') %>" />
-			<img id="reports_toggle_open" src="sapphire/images/toggle-open.gif" alt="-" style="display:none;" title="<% _t('CLOSEBOX') %>" /> 
+			<a id="reports_toggle_closed" class="fa fa-lg fa-angle-double-down" title="<% _t('OPENBOX') %>" ></a>
+			<a id="reports_toggle_open" class="fa fa-lg fa-angle-double-up" style="display:none;" title="<% _t('CLOSEBOX') %>" ></a> 
 			<% _t('SITEREPORTS','Site Reports') %>
 		</h2>
 		$ReportFormParameters

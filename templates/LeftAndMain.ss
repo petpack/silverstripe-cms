@@ -45,7 +45,7 @@
 				<a href="$ApplicationLink" >$ApplicationName</a>&nbsp;-&nbsp;
 				<abbr style="border-style: none" title="<% _t('APPVERSIONTEXT1',"This is the") %> $ApplicationName <% _t('APPVERSIONTEXT2',"version that you are currently running, technically it's the CVS branch") %>">$CMSVersion</abbr> &nbsp; &nbsp; &nbsp; 
 				<% control CurrentMember %>
-					<% _t('LOGGEDINAS','Logged in as') %> <strong><% if FirstName && Surname %>$FirstName $Surname<% else_if FirstName %>$FirstName<% else %>$Email<% end_if %></strong> | <a href="{$BaseHref}admin/myprofile" id="EditMemberProfile"><% _t('EDITPROFILE','Profile') %></a> | <a href="Security/logout?_REDIRECT_BACK_URL=/admin/" id="LogoutLink"><% _t('LOGOUT','Log out') %><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+					<% _t('LOGGEDINAS','Logged in as') %> <strong><% if FirstName && Surname %>$FirstName $Surname<% else_if FirstName %>$FirstName<% else %>$Email<% end_if %></strong> | <a href="{$BaseHref}admin/myprofile" id="EditMemberProfile"><% _t('EDITPROFILE','Profile') %></a> | <a href="Security/logout?_REDIRECT_BACK_URL=/admin/" id="LogoutLink"><% _t('LOGOUT','Log out') %><i class="fa fa-lg fa-sign-out" aria-hidden="true"></i></a>
 				<% end_control %>
 			</div>
 
