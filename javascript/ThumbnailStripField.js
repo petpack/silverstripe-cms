@@ -45,7 +45,6 @@ ThumbnailStripField.prototype = {
 						var folderID = null;
 						if (parentField && parentField.inputTag) 
 							folderID = parentField.inputTag.value
-						$('Flash').ajaxGetFiles(folderID, searchText);
 						$('FolderImages').ajaxGetFiles(folderID, searchText);
 					}, 2000);
 				});
