@@ -34,7 +34,6 @@
 		<% control EditorToolbar %>
 			$ImageForm
 			$LinkForm
-			$FlashForm
 		<% end_control %>
 	</div>
 	<% end_if %>

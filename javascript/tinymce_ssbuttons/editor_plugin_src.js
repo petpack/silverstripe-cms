@@ -27,12 +27,10 @@
 			forms = {
 				'sslink' : 'Form_EditorToolbarLinkForm',
 				'ssimage' : 'Form_EditorToolbarImageForm',
-				'ssflash' : 'Form_EditorToolbarFlashForm'
 			};
 
 			ed.addButton('sslink', {title : ed.getLang('tinymce_ssbuttons.insertlink'), cmd : 'sslink', 'class' : 'mce_link'}); 
 			ed.addButton('ssimage', {title : ed.getLang('tinymce_ssbuttons.insertimage'), cmd : 'ssimage', 'class' : 'mce_image'}); 
-			ed.addButton('ssflash', {title : ed.getLang('tinymce_ssbuttons.insertflash'), cmd : 'ssflash', 'class' : 'mce_flash', 'image': url + '/img/flash.gif'}); 
 
 			/**
 			 * Show a side panel, hiding others

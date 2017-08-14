@@ -343,7 +343,6 @@ $(document).ready(function() {
 			if($('#contentPanel').is(':visible')) {
 				$('#contentPanel').hide();
 				$('#Form_EditorToolbarImageForm').hide();
-				$('#Form_EditorToolbarFlashForm').hide();
 				$('#Form_EditorToolbarLinkForm').hide();
 			}
 		}
