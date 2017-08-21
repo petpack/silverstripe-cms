@@ -109,19 +109,9 @@ class ThumbnailStripField extends FormField {
 			foreach($images as $image) {
 				$thumbnail = $image->getFormattedImage('StripThumbnail');
 				
-				if ($thumbnail instanceof Image_Cached) {       //Hack here...
-					// Constrain the output image to a 600x600 square.  This is passed to the destwidth/destheight in the class, which are then used to
-					// set width & height properties on the <img> tag inserted into the CMS.  Resampling is done after save
+				if ($thumbnail instanceof Image_Cached) {
 					$width = $image->Width;
 					$height = $image->Height;
-					if($width > 600) {
-						$height *= (600 / $width);
-						$width = 600;
-					}
-					if($height > 600) {
-						$width *= (600 / $height);
-						$height = 600;
-					}
 					
 					$result .= 
 						'<li>' .
