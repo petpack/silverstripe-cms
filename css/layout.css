@@ -106,6 +106,10 @@ li.action button {
         padding-left: 22px;
         background: url(../images/network-save.gif) 3px 2px no-repeat;
 	}
+	
+	input.action[disabled] {
+		color: #777;
+	}
 
 input.delete:hover,
 button.delete:hover,

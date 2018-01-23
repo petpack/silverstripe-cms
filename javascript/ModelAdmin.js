@@ -240,31 +240,56 @@ $(document).ready(function() {
 	 * RHS panel Save button 
 	 */
 	$('#right input[name=action_doSave],#right input[name=action_doCreate]').live('click', function(){
+		
 		var form = $('#right form');
 		var formAction = form.attr('action') + '?' + $(this).fieldSerialize();
+		
+		var ctrl = $(this);
+		//DM: disable the button while we're doing stuff to prevent double clicks.
+		//		I call this technique "not being retarded".
+		ctrl.attr('disabled','disabled');
 		
 		// @todo TinyMCE coupling
 		if(typeof tinyMCE != 'undefined') tinyMCE.triggerSave();
 		
 		// Post the data to save
-		$.post(formAction, form.formToArray(), function(result){
-			// @todo TinyMCE coupling
-			tinymce_removeAll();
-			
-			$('#right #ModelAdminPanel').html(result);
-
-			if($('#right #ModelAdminPanel form').hasClass('validationerror')) {
-				statusMessage(ss.i18n._t('ModelAdmin.VALIDATIONERROR', 'Validation Error'), 'bad');
-			} else {
-				statusMessage(ss.i18n._t('ModelAdmin.SAVED', 'Saved'), 'good');
+		
+		//DM: replace call to $.post with $.ajax because I'm not willing to 
+		//		blindly assume that ajax calls succeed, instead I like to do 
+		//		some basic level of error handling.
+		//	Another way to put this would be so say that the SS devs are incompetent fucks.
+		
+		$.ajax({
+			type: "POST",
+			url: formAction,
+			data: form.formToArray(),
+			dataType: 'html',
+			success: function(result){
+				// @todo TinyMCE coupling
+				tinymce_removeAll();
+				
+				$('#right #ModelAdminPanel').html(result);
+				
+				if($('#right #ModelAdminPanel form').hasClass('validationerror')) {
+					statusMessage(ss.i18n._t('ModelAdmin.VALIDATIONERROR', 'Validation Error'), 'bad');
+				} else {
+					statusMessage(ss.i18n._t('ModelAdmin.SAVED', 'Saved'), 'good');
+				}
+				
+				// TODO/SAM: It seems a bit of a hack to have to list all the little updaters here. 
+				// Is jQuery.live a solution?
+				Behaviour.apply(); // refreshes ComplexTableField
+				if(window.onresize) window.onresize();
+			},
+			error: function(xhr,response,errorText) {	//some basic feedback about errors.
+				statusMessage("There was an error saving the record, please try again or contact us if the problem persists.","bad")
+				ctrl.removeClass('loading');
+			},
+			complete: function(xhr) {
+				ctrl.removeAttr('disabled');
 			}
-
-			// TODO/SAM: It seems a bit of a hack to have to list all the little updaters here. 
-			// Is jQuery.live a solution?
-			Behaviour.apply(); // refreshes ComplexTableField
-			if(window.onresize) window.onresize();
-		}, 'html');
-
+		});
+		
 		return false;
 	});
 	
