@@ -258,7 +258,6 @@ $(document).ready(function() {
 		//		blindly assume that ajax calls succeed, instead I like to do 
 		//		some basic level of error handling.
 		//	Another way to put this would be so say that the SS devs are incompetent fucks.
-		
 		$.ajax({
 			type: "POST",
 			url: formAction,

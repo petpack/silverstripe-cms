@@ -108,7 +108,7 @@ li.action button {
 	}
 	
 	input.action[disabled] {
-		color: #777;
+		color: #aaa;
 	}
 
 input.delete:hover,
